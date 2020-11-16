@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <header class="jumbotron my-4">
+            <h1 class="display-3">A Warm Welcome, My manager !</h1>
+            <p class="lead">You can check the workers usage status</p>
+            <a href="{{ url_for('pool', success = False) }}" class="btn btn-primary btn-lg">Check usage</a>
+    </header>
+</div>
+ {% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container ">
+        <header class="jumbotron my-4">
+                {% if success == True%}
+                <div class="alert alert-success">Instance Updated </div>
+                {% else %}
+                <div> </div>
+                {% endif %}
+                <div class="container">
+                        <div class="text-center">
+                                <div class="row">
+                                        <div class="col">
+                                                <label class="text-center">Add New Worker Instance</label>
+                                                <a href="{{ url_for('create_instance')}}"
+                                                        class="btn btn-primary btn-sm">Create</a>
+                                        </div>
+                                        <div class="col">
+                                                <label>Clear S3 </label>
+                                                <a href="{{ url_for('clear_s3')}}"
+                                                        class="btn btn-primary btn-sm">C-S3</a>
+                                        </div>
+                                        <div class="col">
+                                                <label>Terminate all</label>
+                                                <a href="{{ url_for('terminate')}}" class="btn btn-primary btn-sm">Terminate</a>
+                                        </div>
+                                </div>
+                                <div class="row mt-5" style="margin-left:150px;">
+                                        <div> <label>{{load_balancer}} </label>
+                                                <a class="text-center" href={{load_balancer}} target="_blank">Visit our load
+                                                        balancer</a>
+
+                                        </div>
+
+                                </div>
+                        </div>
+                </div>
+        </header>
+        <header class="jumbotron text-center">
+                <div class="container mt-n4">
+                        {% for instance in instance_list %}
+                        <div class="row">
+                                <div class="col">
+                                        <div class="font-weight-bold">ID</div>
+                                        <div class="display-6 mt-3 "><small>{{instance.id[2:]}}</small> </div>
+                                </div>
+                                <div class="col">
+                                        <div class="font-weight-bold">Key Name</div>
+                                        <div class="display-6 mt-3 "><small>{{instance.key_name}}</small> </div>
+                                </div>
+                                <div class="col">
+                                        <div class="font-weight-bold">Image Id</div>
+                                        <div class="display-6 mt-3 "><small>{{instance.image_id[4:]}}</small>
+                                        </div>
+                                </div>
+                                <div class="col">
+                                        <div class="font-weight-bold">Tag</div>
+                                        <div class="display-6 mt-3 "><small>{{instance.tags[0]['Value']}}</small>
+                                        </div>
+                                </div>
+                                <div class="col">
+                                        <div class="font-weight-bold">Type</div>
+                                        <div class="display-6 mt-3"><small>{{instance.instance_type}}</small> </div>
+                                </div>
+                                <div class="col">
+                                        <div class="font-weight-bold">View</div>
+                                        <div class="display-6 mt-2 "><small><a
+                                                                href="{{ url_for('view', instance_id = instance.id) }}"
+                                                                class="btn btn-primary btn-sm">Detail</a></small>
+                                        </div>
+                                </div>
+                                <div class="col">
+                                        <div class="font-weight-bold">Remove</div>
+                                        <div class="display-6 mt-2 "><small><a
+                                                                href="{{ url_for('remove_one', remove_id = instance.id) }}"
+                                                                class="btn btn-primary btn-sm">Remove</a></small>
+                                        </div>
+                                </div>
+                        </div>
+                        <hr>
+                        {% endfor %}
+
+                </div>
+        </header>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container ">
+        <header class="jumbotron my-4">
+                <div class="container text-center">
+                    <div class="text-center mt-n3 mb-4 font-weight-bold"> Instance number in past 3 minutes 
+                        <hr>
+                        {% if instance_num != None %}
+                        <img src="data:image/png;base64,{{ instance_num }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </header>
+    <header class="jumbotron my-4">
+        <div class="container text-center">
+            <div class="text-center mt-n3 mb-4 font-weight-bold"> Average CPU utilization for all workers in past 3 minutes
+                <hr>
+                {% if cpu_utl != None %}
+                <img src="data:image/png;base64,{{ cpu_utl }}">
+                {% endif %}
+            </div>
+        </div>
+    </header>
+</div>
+{% endblock %}
